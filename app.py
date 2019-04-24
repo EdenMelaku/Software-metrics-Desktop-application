@@ -68,10 +68,31 @@ totalLoc=0
 CommentedLoc=0
 blankLoc=0
 ActiveLoc=0
+DeclarationLoc=0
+
+TLOC=[]
+CLOC=[]
+BLOC=[]
+ALOC=[]
+DLOC=[]
+
+
 def inspectFies(files,dir):
 
  for m in files :
-     inspectFile(m)
+     t,c,b,a,d=inspectFile(m)
+     TLOC.append(t)
+     CLOC.append(c)
+     BLOC.append(b)
+     ALOC.append(a)
+     DLOC.append(d)
+ i=0
+ print("GENERATING TOTAL REPORT ")
+ for k in files:
+     print("name of file ----------  total number of line ----- commented------- blank--------active-----declaration")
+     print(str(k)+"-----"+TLOC[i]+"-----"+CLOC[i]+"-----"+BLOC[i]+"-----"+ALOC[i]+"-----"+DLOC[i])
+
+     i+=1
 
 
 

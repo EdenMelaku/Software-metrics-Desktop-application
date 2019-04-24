@@ -46,9 +46,14 @@ def inspectFile(filename):
     print("blanck lines "+str(blankLoc))
     print("active lines "+str(ActiveLoc))
     print("import statements "+str(declaration))
+    return sum, CommentedLoc + blankLoc + ActiveLoc + declaration
 javaComment= "(?://.*)|(/\\*(?:.|[\\n\\r])*?\\*/)"
 
 javaImport="[import ][a-zA-Z\.\*\;]*"
+
+
+
+
 def languageDefn(line):
 
 
