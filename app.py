@@ -3,16 +3,7 @@ import os
 
 from javaInspection import inspectFile
 
-#tasks to do
-
-
-
-
-
-
-
-
-
+result=""
 
 
 def returnFiles(baseDir):
@@ -61,16 +52,20 @@ def returnFiles(baseDir):
     else:
       files.append(os.path.join(basepath,entry))
       i+=1
-
+ global result
+ result=result+"files  ="+str(len(files))+"   \n dir=  "+str(len(dir))
  print("files  ="+str(len(files))+"   \n dir=  "+str(len(dir)))
+ result=result+"\nfile names are\n"
  print("file names are ")
  for f in files :
+     result="\n"+f
      print (f)
 
  print("dir names are  ")
-
+ result="\ndir names are \n"
  for x in dir :
-        print(x)
+     result="\n"+x
+     print(x)
 
  return files,dir
 
@@ -105,9 +100,10 @@ def inspectFiles(files,dir):
      for num in values:
       print(num)
 
-
+ global text
  i=0
  print("GENERATING TOTAL REPORT ")
+ text=text+"GENERATING TOTAL REPORT "
  for k in valls:
      #print("name of file ----------  total number of line ----- commented------- blank--------active-----declaration")
     # print(str(k)+"-----"+str(TLOC[i])+"-----"+str(CLOC[i])+"-----"+str(BLOC[i])+"-----"+str(ALOC[i])+"-----"+str(DLOC[i]))
@@ -118,8 +114,11 @@ def inspectFiles(files,dir):
      ALOC=ALOC+k[3]
      DLOC=DLOC+k[4]
 
-
-
+ text = text +"toltal number of lines "+str(TLOC)
+ text=text+"commented lines "+str(CLOC)
+ text=text+"blanck lines "+str(BLOC)
+ text=text+"active lines "+str(ALOC)
+ text=text+"import statements "+str(DLOC)
 
  print("toltal number of lines "+str(TLOC))
  print("commented lines "+str(CLOC))
@@ -127,6 +126,10 @@ def inspectFiles(files,dir):
  print("active lines "+str(ALOC))
  print("import statements "+str(DLOC))
 
+def toPage(dir,files):
+   inspectFiles(files,dir)
+   global text
+   return text
 
 if __name__ == "__main__":
 
