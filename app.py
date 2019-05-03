@@ -3,6 +3,17 @@ import os
 
 from javaInspection import inspectFile
 
+#tasks to do 
+
+
+
+
+
+
+
+
+
+
 
 def returnFiles(baseDir):
  # List all subdirectories using os.listdir
@@ -77,7 +88,7 @@ ALOC=[]
 DLOC=[]
 
 
-def inspectFies(files,dir):
+def inspectFiles(files,dir):
 
  for m in files :
      t,c,b,a,d=inspectFile(m)
@@ -90,7 +101,8 @@ def inspectFies(files,dir):
  print("GENERATING TOTAL REPORT ")
  for k in files:
      print("name of file ----------  total number of line ----- commented------- blank--------active-----declaration")
-     print(str(k)+"-----"+TLOC[i]+"-----"+CLOC[i]+"-----"+BLOC[i]+"-----"+ALOC[i]+"-----"+DLOC[i])
+     print(str(k)+"-----"+str(TLOC[i])+"-----"+str(CLOC[i])+"-----"+str(BLOC[i])+"-----"+str(ALOC[i])+"-----"+str(DLOC[i]))
+
 
      i+=1
 
@@ -105,6 +117,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     folder=args.dataFolder
     files, dir=returnFiles(folder)
+    inspectFiles(files,dir)
 
 
 

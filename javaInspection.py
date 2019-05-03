@@ -47,9 +47,7 @@ def inspectFile(filename):
     print("active lines "+str(ActiveLoc))
     print("import statements "+str(declaration))
     return sum, CommentedLoc + blankLoc + ActiveLoc + declaration
-javaComment= "(?://.*)|(/\\*(?:.|[\\n\\r])*?\\*/)"
 
-javaImport="[import ][a-zA-Z\.\*\;]*"
 
 
 
@@ -57,20 +55,28 @@ javaImport="[import ][a-zA-Z\.\*\;]*"
 def languageDefn(line):
 
 
-   # print(line)
-    #print()
-    text=str(line)
+    #print("in method ")
+    text=line;
     print(text)
 
 
     if not text.strip():
+       #print("empty")
        return 0
-    elif (re.search("^//",text)):
+
+    elif (re.search("^// ",text.strip())):
         return 3
-    elif (re.search("^import", text)):
+    elif (re.search("^//", text.strip())):
+        return 3
+        #print("commented")
+    elif (re.search("^import ", text.strip())):
         return 2
+        #print("import")
+
     else:
+        print("active")
         return 1
+
 
 
 
@@ -82,14 +88,38 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     file = args.filename
-    g="impo eden"
-    if(re.search("^import",g)):
+    g="import eden"
+    f=""
+    k="dkfj"
+    if(re.search("^\n",f)):
         print("matched")
+    elif not f.strip():
+        print("empty")
     else:
         print("not matched")
 
 
-    inspectFile(file)
+
+text="// comment  "
+
+if not text.strip():
+       print("empty")
+
+
+elif (re.search("^// ",text)):
+
+        print("commented")
+elif (re.search("^//",text)):
+
+        print("commented")
+elif (re.search("^import ", text)):
+
+        print("import")
+
+else:
+        print("active")
+
+inspectFile(file)
 
 
 
