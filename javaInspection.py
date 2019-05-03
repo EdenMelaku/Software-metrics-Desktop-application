@@ -1,5 +1,6 @@
 import argparse
 import datetime
+import os
 import re
 
 
@@ -21,7 +22,14 @@ def inspectFile(filename):
     blankLoc = 0
     ActiveLoc = 0
     declaration =0
-    with open(filename, 'r') as file:
+
+    extension = os.path.splitext(filename)[1]
+
+    if (extension==".java"):
+
+     print("THE FILE NAME IS  "+filename)
+
+     with open(filename, 'r') as file:
         totalLoc=totalLoc+1
 
 
@@ -46,7 +54,12 @@ def inspectFile(filename):
     print("blanck lines "+str(blankLoc))
     print("active lines "+str(ActiveLoc))
     print("import statements "+str(declaration))
-    return sum, CommentedLoc + blankLoc + ActiveLoc + declaration
+
+
+
+    values=[ sum, CommentedLoc ,blankLoc ,ActiveLoc , declaration]
+
+    return values
 
 
 
@@ -57,7 +70,7 @@ def languageDefn(line):
 
     #print("in method ")
     text=line;
-    print(text)
+    #print(text)
 
 
     if not text.strip():
@@ -74,7 +87,7 @@ def languageDefn(line):
         #print("import")
 
     else:
-        print("active")
+        #print("active")
         return 1
 
 
@@ -119,7 +132,7 @@ elif (re.search("^import ", text)):
 else:
         print("active")
 
-inspectFile(file)
+#inspectFile(file)
 
 
 

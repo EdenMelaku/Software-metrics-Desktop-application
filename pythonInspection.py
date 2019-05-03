@@ -1,5 +1,6 @@
 import argparse
 import datetime
+import os
 import re
 
 
@@ -21,7 +22,10 @@ def inspectFile(filename):
     blankLoc = 0
     ActiveLoc = 0
     declaration =0
-    with open(filename, 'r') as file:
+    extension = os.path.splitext(filename)[1]
+    if (extension == ".py"):
+     print("THE FILE NAME IS  " + filename)
+     with open(filename, 'r') as file:
         totalLoc=totalLoc+1
 
 

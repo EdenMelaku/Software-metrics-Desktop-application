@@ -3,7 +3,7 @@ import os
 
 from javaInspection import inspectFile
 
-#tasks to do 
+#tasks to do
 
 
 
@@ -81,31 +81,51 @@ blankLoc=0
 ActiveLoc=0
 DeclarationLoc=0
 
-TLOC=[]
-CLOC=[]
-BLOC=[]
-ALOC=[]
-DLOC=[]
+
 
 
 def inspectFiles(files,dir):
+ TLOC = 0
+ CLOC = 0
+ BLOC = 0
+ ALOC = 0
+ DLOC = 0
 
+ valls = []
  for m in files :
-     t,c,b,a,d=inspectFile(m)
-     TLOC.append(t)
-     CLOC.append(c)
-     BLOC.append(b)
-     ALOC.append(a)
-     DLOC.append(d)
+     values=inspectFile(m)
+     valls.append(values)
+    # TLOC.append(values[0])
+     #CLOC.append(values[1])
+     #BLOC.append(values[2])
+     #ALOC.append(values[3])
+     #DLOC.append(values[4])
+     print(m)
+
+     for num in values:
+      print(num)
+
+
  i=0
  print("GENERATING TOTAL REPORT ")
- for k in files:
-     print("name of file ----------  total number of line ----- commented------- blank--------active-----declaration")
-     print(str(k)+"-----"+str(TLOC[i])+"-----"+str(CLOC[i])+"-----"+str(BLOC[i])+"-----"+str(ALOC[i])+"-----"+str(DLOC[i]))
+ for k in valls:
+     #print("name of file ----------  total number of line ----- commented------- blank--------active-----declaration")
+    # print(str(k)+"-----"+str(TLOC[i])+"-----"+str(CLOC[i])+"-----"+str(BLOC[i])+"-----"+str(ALOC[i])+"-----"+str(DLOC[i]))
+     sum=0
+     TLOC=TLOC+k[0]
+     CLOC=CLOC+k[1]
+     BLOC=BLOC+k[2]
+     ALOC=ALOC+k[3]
+     DLOC=DLOC+k[4]
 
 
-     i+=1
 
+
+ print("toltal number of lines "+str(TLOC))
+ print("commented lines "+str(CLOC))
+ print("blanck lines "+str(BLOC))
+ print("active lines "+str(ALOC))
+ print("import statements "+str(DLOC))
 
 
 if __name__ == "__main__":
