@@ -1,6 +1,10 @@
 import argparse
 import os
 
+import javaInspection
+import pythonInspection
+import cInspection
+
 from javaInspection import inspectFile
 
 result=""
@@ -79,7 +83,16 @@ DeclarationLoc=0
 
 
 
-def inspectFiles(files,dir):
+def inspectFiles(files,dir, language):
+
+ lan=0
+ if (language=="java"):
+     lan=1
+ elif (language=="python"):
+     lan=2
+ else:
+     lan=0
+
  TLOC = 0
  CLOC = 0
  BLOC = 0
@@ -88,7 +101,13 @@ def inspectFiles(files,dir):
 
  valls = []
  for m in files :
-     values=inspectFile(m)
+     if (lan == 1):
+         values = javaInspection.inspectFile(m)
+     elif (language == 2):
+         values = pythonInspection.inspectFile(m)
+     else:
+         values = cInspection.inspectFile(m)
+
      valls.append(values)
     # TLOC.append(values[0])
      #CLOC.append(values[1])
@@ -126,8 +145,8 @@ def inspectFiles(files,dir):
  print("active lines "+str(ALOC))
  print("import statements "+str(DLOC))
 
-def toPage(dir,files):
-   inspectFiles(files,dir)
+def toPage(dir,files,language):
+   inspectFiles(files,dir,language)
    global text
    return text
 
