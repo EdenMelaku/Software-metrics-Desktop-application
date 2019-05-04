@@ -9,7 +9,7 @@ from javaInspection import inspectFile
 
 result=""
 
-
+text = "\n\nGENERATING TOTAL REPORT \n\n"
 def returnFiles(baseDir):
  # List all subdirectories using os.listdir
  i=0
@@ -81,17 +81,17 @@ ActiveLoc=0
 DeclarationLoc=0
 
 
-
+lang=9
 
 def inspectFiles(files,dir, language):
-
- lan=0
- if (language=="java"):
-     lan=1
- elif (language=="python"):
-     lan=2
+ print("######################### language = "+language)
+ global lang
+ if (language =="java"):
+     lang =1
+ elif (language =="python"):
+     lang=2
  else:
-     lan=0
+     lang=0
 
  TLOC = 0
  CLOC = 0
@@ -101,12 +101,15 @@ def inspectFiles(files,dir, language):
 
  valls = []
  for m in files :
-     if (lan == 1):
+     if (lang == 1):
          values = javaInspection.inspectFile(m)
-     elif (language == 2):
+         print("java method called  *********************************************")
+     elif (lang == 2):
          values = pythonInspection.inspectFile(m)
+         print("python method called  *********************************************")
      else:
          values = cInspection.inspectFile(m)
+         print("c++ method called  *********************************************")
 
      valls.append(values)
     # TLOC.append(values[0])
@@ -122,7 +125,7 @@ def inspectFiles(files,dir, language):
  global text
  i=0
  print("GENERATING TOTAL REPORT ")
- text=text+"GENERATING TOTAL REPORT "
+
  for k in valls:
      #print("name of file ----------  total number of line ----- commented------- blank--------active-----declaration")
     # print(str(k)+"-----"+str(TLOC[i])+"-----"+str(CLOC[i])+"-----"+str(BLOC[i])+"-----"+str(ALOC[i])+"-----"+str(DLOC[i]))
@@ -133,11 +136,11 @@ def inspectFiles(files,dir, language):
      ALOC=ALOC+k[3]
      DLOC=DLOC+k[4]
 
- text = text +"toltal number of lines "+str(TLOC)
- text=text+"commented lines "+str(CLOC)
- text=text+"blanck lines "+str(BLOC)
- text=text+"active lines "+str(ALOC)
- text=text+"import statements "+str(DLOC)
+ text = text +"\n toltal number of lines "+str(TLOC)
+ text=text+"\n commented lines "+str(CLOC)
+ text=text+"\n blanck lines "+str(BLOC)
+ text=text+"\n active lines "+str(ALOC)
+ text=text+"\n import statements "+str(DLOC)
 
  print("toltal number of lines "+str(TLOC))
  print("commented lines "+str(CLOC))
