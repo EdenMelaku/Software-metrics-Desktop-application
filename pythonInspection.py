@@ -50,8 +50,9 @@ def inspectFile(filename):
     print("blanck lines "+str(blankLoc))
     print("active lines "+str(ActiveLoc))
     print("import statements "+str(declaration))
-    return sum, CommentedLoc + blankLoc + ActiveLoc + declaration
+    values = [sum, CommentedLoc, blankLoc, ActiveLoc, declaration]
 
+    return values
 
 
 
@@ -61,7 +62,7 @@ def languageDefn(line):
 
     #print("in method ")
     text=line;
-    print(text)
+    #print(text)
 
 
     if not text.strip():
@@ -75,10 +76,12 @@ def languageDefn(line):
         #print("commented")
     elif (re.search("^import ", text.strip())):
         return 2
+    elif (re.search("^from ", text.strip())):
+        return 2
         #print("import")
 
     else:
-        print("active")
+        #print("active")
         return 1
 
 
@@ -104,7 +107,7 @@ if __name__ == "__main__":
 
 
 
-inspectFile(file)
+#inspectFile(file)
 
 
 
